@@ -8,3 +8,11 @@ This version contains new functions :
 - Functions to manage signatures/category mapping
 - Management of authentication with three levels to manage tights to access some functions
 - A new possibility to use two databases, one "running" which is feeded by OSSEC where you can "delete" records. Deleted records are automagically re-inserted in the second ("history") database for statistical and historical access.
+
+The project uses :
+- Amcharts for tracing graphs (as Analogi and OSSEC-WUI)
+- PHP AUTH from Delight-im for managing authentication
+
+To use it you must use 
+- A Web server with PHP enabled (Tested with Apache 2.4.25 on a Debian Stretch)
+- A Mysql database (tested with Mysql 5.7 and Mariadb 10.3).
