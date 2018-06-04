@@ -7,7 +7,7 @@ Should be released soon.
 This version contains new functions :
 - Some statistics.
 - Ability to remove alerts.
-- Ability to "reorganize" the database in a dedicated function.
+- Ability to "reorganize" the database (Mysql/MariaDB) in a dedicated function.
 - Functions to manage signatures/category mapping.
 - Management of authentication with three levels to manage rights to access many functions.
 - A new improvement : ability to use two databases, one "running" which is feeded by OSSEC where you can "delete" records that are no more interesting (problems solved ...). 
@@ -18,6 +18,13 @@ The project uses :
 - Amcharts for tracing graphs (as Analogi and OSSEC-WUI) : https://www.amcharts.com
 - PHP AUTH from Delight-im for managing authentication : https://github.com/delight-im/PHP-Auth
 
-To use it you must install : 
-- A Web server with PHP enabled (Tested with Apache 2.4.25 on a Debian Stretch)
+It is possible to disable authentication.
+
+To use OSSEC-GUI you must install : 
+- A Web server with PHP enabled (Tested with Apache 2.4.25 on a Debian Stretch) with, at least :
+  php7 curl
+  php7 json
+  php7 mbstring
+  php7 mysql
+  php7 xml
 - A Mysql database (tested with Mysql 5.7 and Mariadb 10.3).
