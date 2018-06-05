@@ -15,13 +15,13 @@ if ( constant('DB_TYPE_O') == 'history' )
   { print ('<nav classname="MyNavbar" class="navbar navbar-inverse navbar-expand-lg navbar-fixed-top">');
     print ('<div class="container-fluid">');
     print ('<div class="navbar-header">');
-    print ('<a href="./index.php?" class="navbar-brand text-primary">OSSEC - WUI - ' . $VERSION  . ' Mode:History' . ' ' . $USER . '</a>');
+    print ('<a href="./index.php?" class="navbar-brand text-primary">OSSEC - GUI - ' . $VERSION  . ' Mode:History' . ' ' . $USER . '</a>');
     print ('</div>');
   } else
   { print ('<nav classname="MyNavbar" class="navbar navbar-inverse navbar-expand-lg navbar-fixed-top">');
     print ('<div class="container-fluid">');
     print ('<div class="navbar-header">');
-    print ('<a href="./index.php?" class="navbar-brand text-primary">OSSEC - WUI - ' . $VERSION .  ' Mode:Running' . ' ' . $USER . '</a>');
+    print ('<a href="./index.php?" class="navbar-brand text-primary">OSSEC - GUI - ' . $VERSION .  ' Mode:Running' . ' ' . $USER . '</a>');
     print ('</div>');
   }
 ?>

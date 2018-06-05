@@ -78,7 +78,7 @@ if ($glb_debug == 1) {
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>OSSEC WUI</title>
+    <title>OSSEC GUI</title>
 
     <?php
     include "page_refresh.php";

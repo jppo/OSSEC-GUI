@@ -68,7 +68,7 @@ if ( $ERR <> 0 )
 }
 print ($ERR . "/" . $MSG);
 $_SESSION['myname'] = $usern;
-$MSG2 = "OSSEC-WUI User login " . $usern . " from " . $IPADDR; 
+$MSG2 = "OSSEC-GUI User login " . $usern . " from " . $IPADDR; 
 error_log($MSG2,0); 
 exit(0);
 ?>

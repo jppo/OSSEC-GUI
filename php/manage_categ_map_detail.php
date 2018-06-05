@@ -14,7 +14,7 @@ var value = e.options[e.selectedIndex].value;
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>OSSEC WUI V2.9</title>
+    <title>OSSEC GUI</title>
 	<script src="../js/jquery-3.3.1.js"></script>
 <?php
 	require_once './run_his_php.php';

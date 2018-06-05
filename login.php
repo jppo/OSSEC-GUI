@@ -1,4 +1,9 @@
 <?php
+/*
+ * Copyright (c) 2018 JP P
+ * This program is free software; Distributed under the terms of the GNU GPL v3.
+ */
+
 # require_once './db_auth.php';
 
 session_start();
@@ -6,7 +11,7 @@ session_start();
 ?>
 <html>
 <head>
-<title>OSSEC-WUI login</title>
+<title>OSSEC-GUI login</title>
 </head>
 <link href="./css/login.css" rel="stylesheet" type="text/css">
 <script src="./js/jquery-3.3.1.js"></script>
