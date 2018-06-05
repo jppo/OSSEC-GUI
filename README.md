@@ -2,8 +2,8 @@
 Version of OSSEC-WUI adapted to OSSEC versions >= 2.9.3, V3.0 included.
 This an evolution from Analogi (from Ecsc) and OSSEC-WUI which can be found at :
 https://github.com/NunesGodinho/OSSEC-WUI which uses the "old" database schema.
-The software is in final tests with both versions 2.9.3 and V3.0 stable.
-Should be released soon.
+The software is tested with both versions 2.9.3 and V3.0 stable.
+First release on 05/06/2018.
 This version contains new functions :
 - Some statistics.
 - Ability to remove alerts.
@@ -18,7 +18,7 @@ The project uses :
 - Amcharts for tracing graphs (as Analogi and OSSEC-WUI) : https://www.amcharts.com
 - PHP AUTH from Delight-im for managing authentication : https://github.com/delight-im/PHP-Auth
 
-It is possible to disable authentication.
+It is possible to enable an authentication system, see in the doc/AUTH directory, when installed the default is to run with no authentication. 
 
 To use OSSEC-GUI you must install : 
 - A Web server with PHP enabled (Tested with Apache 2.4.25 on a Debian Stretch) with, at least :
@@ -27,4 +27,4 @@ To use OSSEC-GUI you must install :
   php7 mbstring
   php7 mysql
   php7 xml
-- A Mysql database (tested with Mysql 5.7 and Mariadb 10.3).
+- A Mysql database (tested with Mysql 5.7 and Mariadb 10.1 and 10.3 on some Debian Stretch).
