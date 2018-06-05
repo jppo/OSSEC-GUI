@@ -1,0 +1,22 @@
+BEGIN {
+FS = "#";
+DESC = "";
+RUL_ID = "";
+}
+function GENER()
+{
+if ( RUL_ID == "" ) { return; }
+if ( LEVEL  == 0  ) { return; }
+print "replace into z_signature (id,rule_id,level,description) ";
+print "  values ("RUL_ID","RUL_ID","LEVEL",'"DESC"');";
+RUL_ID = "";
+LEVEL  = "";
+DESC   = "";
+}
+# ---------------------------------------------------
+{
+RUL_ID = $1;
+LEVEL  = $2;
+DESC   = $3;
+GENER();
+}

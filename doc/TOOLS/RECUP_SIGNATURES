@@ -1,0 +1,74 @@
+#!/bin/bash
+#
+#	Get signatures : ID, LEVEL,TEXT
+#
+# =========================================================================
+DELFIC ()
+{
+if [ -f "${1}" ]
+   then
+	rm -f ${1}
+fi
+}
+SORTIE()
+{
+RET=$1
+if [ -z "${RET}" ]
+  then
+	RET=0
+fi
+##### DELFIC ${FTM1}
+##### DELFIC ${FTM2}
+
+exit ${RET}
+}
+# =========================================================================
+FTM1=/tmp/RECUP_SIGNATURES.tm1
+FTM2=/tmp/RECUP_SIGNATURES.tm2
+FSOR=/tmp/RECUP_SIGNATURES.sql
+REP=/var/ossec/rules
+AWK=/usr/bin/gawk
+#
+if [ -h ${0} ]
+   then
+	echo 'Link'
+	ZZZ=$(ls -al ${0})
+	set -- $ZZZ
+	shift;shift
+	ORIG=$(dirname ${9})
+   else
+	echo 'Pas link'
+	ORIG=$(dirname $0)
+fi
+cd $ORIG
+ORIG=$(pwd)
+echo 'Orig='${ORIG}
+#
+DELFIC ${FTM1}
+DELFIC ${FTM2}
+
+cd ${REP}
+ret=$?
+if [ ${ret} -ne 0 ]
+  then
+	echo ${REP}' not found --> exit'
+	exit 1
+fi
+LIST=$(find ./ -type f -name '*.xml' | grep -v 'local_rules.xml')
+
+
+for ZFILE in ${LIST}
+do
+	cat ${ZFILE} >>${FTM1}
+done
+wc -l ${FTM1}
+
+cat  ${FTM1} | sed 's/"//g' | ${AWK} -f ${ORIG}'/RECUP_SIGNATURES.aw1' | sort -u -t\# -k1n >${FTM2}
+
+wc -l ${FTM2}
+
+cat ${FTM2} | ${AWK} -f  ${ORIG}'/RECUP_SIGNATURES.aw2' >${FSOR}
+
+wc -l ${FSOR}
+
+SORTIE 0

@@ -1,0 +1,50 @@
+BEGIN {
+FS = " ";
+DESC = "";
+RUL_ID = "";
+}
+function GET_ID(RUL_ID)
+{
+RUL_ID = tolower(RUL_ID);
+zzz =  sub("id=","",RUL_ID);
+return RUL_ID;
+}
+function GET_LEVEL(LEVEL)
+{
+LEVEL = tolower(LEVEL);
+zzz = sub("level=","",LEVEL);
+zzz = gsub(">","",LEVEL);
+return LEVEL;
+}
+function GET_DESC(DESC)
+{
+DESC = tolower(DESC);
+zzz  = sub("<description>","",DESC);
+zzz  = sub("</description>","",DESC);
+zzz  = sub(/^ +/,"", DESC); 		# Delete leading spaces
+zzz  = gsub("'"," ",DESC);			# delete quotes
+if ( length(DESC) < 5 ) { DESC = "??????????????????????????"; }
+return DESC;
+}
+function GENER()
+{
+if ( RUL_ID == "" ) { return; }
+if ( LEVEL  == 0  ) { return; }
+print RUL_ID"#"LEVEL"#"DESC"#";
+RUL_ID = "";
+LEVEL  = "";
+DESC   = "";
+}
+# ---------------------------------------------------
+{
+# print "LU="$1","$2","$3;
+CLEF = tolower($1);
+if ( CLEF == "<rule" ) 
+  { 	GENER();
+	RUL_ID = GET_ID($2); 
+	LEVEL  = GET_LEVEL($3); 
+  }
+if ( match(CLEF,"<description>") )
+  {	DESC = GET_DESC($0)
+  }
+}
