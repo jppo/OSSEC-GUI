@@ -18,7 +18,7 @@ $where = "";
 # where = the cumulative sql command
 ## filter criteria 'levelmin'  
 if (isset($_GET['levelmin']) && preg_match("/^[0-9]+$/", $_GET['levelmin'])) {
-    $inputlevelmin = $_GET['levelmin'];
+    $inputlevelmin = filter_var($_GET['levelmin'],FILTER_VALIDATE_INT);
     $wherelevelmin = " AND AA.level >=" . $inputlevelmin . " ";
 } else {
     $inputlevelmin = "";
@@ -39,9 +39,9 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
 # error_log($filterlevelmin);
 ### filter unit_dec
 if ( isset($_GET['unit_dec'] ) ) 
-	{	$unit_dec = $_GET['unit_dec'];
+	{	$unit_dec = filter_var($_GET['unit_dec'],FILTER_SANITIZE_STRING);
 	} else
-	{	$unit_dec = 'w';
+	{	$unit_dec = 'd';
 	}
 if ( $unit_dec == "m" )
 	{	$monthselected = "selected";
@@ -60,13 +60,7 @@ if ( $unit_dec == "m" )
 	}
 ### filter nb_weeks
 if ( isset($_GET['nb_weeks'] ) )
-	{	$nb_weeks = $_GET['nb_weeks'];
-	} else
-	{	$nb_weeks = 1;
-	}
-### filter decal
-if ( isset($_GET['nb_weeks'] ) )
-	{	$nb_weeks = $_GET['nb_weeks'];
+	{	$nb_weeks = filter_var($_GET['nb_weeks'],FILTER_VALIDATE_INT);
 	} else
 	{	$nb_weeks = 1;
 	}

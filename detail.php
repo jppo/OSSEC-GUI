@@ -17,14 +17,14 @@ $where = "";
 # where = the cumulative sql command
 ## filter criteria 'levelmin' and 'levelmax' 
 if (isset($_GET['levelmin']) && preg_match("/^[0-9]+$/", $_GET['levelmin'])) {
-    $inputlevelmin = $_GET['levelmin'];
+    $inputlevelmin = filter_var($_GET['levelmin'],FILTER_VALIDATE_INT);
     $where .= "AND signature.level>=" . $inputlevelmin . " ";
 } else {
     $inputlevelmin = "";
     $where .= "";
 }
 if (isset($_GET['levelmax']) && preg_match("/^[0-9]+$/", $_GET['levelmax'])) {
-    $inputlevelmax = $_GET['levelmax'];
+    $inputlevelmax = filter_var($_GET['levelmax'],FILTER_VALIDATE_INT);
     $where .= "AND signature.level<=" . $inputlevelmax . " ";
 } else {
     $inputlevelmax = "";
@@ -125,7 +125,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
 ## filter rule_id
 if (isset($_GET['rule_id']) && preg_match("/^[0-9,\ ]+$/", $_GET['rule_id'])) {
-    $inputrule_id = $_GET['rule_id'];
+    $inputrule_id = filter_var($_GET['rule_id'],FILTER_VALIDATE_INT);
     $filterule_id = $inputrule_id;
 
     $inputrule_id_array = preg_split('/,/', $inputrule_id);
@@ -156,7 +156,7 @@ if (isset($_GET['rule_id']) && preg_match("/^[0-9,\ ]+$/", $_GET['rule_id'])) {
 ### filter input 'datamatch'
 # Current opinion is that this does not have to be 'safe' as we trust users who can access this
 if (isset($_GET['datamatch']) && strlen($_GET['datamatch']) > 0) {
-    $inputdatamatch = $_GET['datamatch'];
+    $inputdatamatch = filter_var($_GET['datamatch'],FILTER_SANITIZE_STRING);
     $filterdatamatch = $inputdatamatch;
     $where .= "AND alert.full_log like '%" . quote_smart($inputdatamatch) . "%' ";
 } else {
@@ -167,7 +167,7 @@ if (isset($_GET['datamatch']) && strlen($_GET['datamatch']) > 0) {
 ### filter input 'dataexclude'
 # Current opinion is that this does not have to be 'safe' as we trust users who can access this
 if (isset($_GET['dataexclude']) && strlen($_GET['dataexclude']) > 0) {
-    $inputdataexclude = $_GET['dataexclude'];
+    $inputdataexclude = filter_var($_GET['dataexclude'],FILTER_SANITIZE_STRING);
     $filterdataexclude = $inputdataexclude;
     $where .= "AND alert.full_log not like '%" . quote_smart($inputdataexclude) . "%' ";
 } else {
@@ -189,7 +189,7 @@ if (isset($_GET['ipmatch']) && preg_match("/^[0-9\.]*$/", $_GET['ipmatch'])) {
 ### filter input 'rulematch'
 # Current opinion is that this does not have to be 'safe' as we trust users who can access this
 if (isset($_GET['rulematch']) && strlen($_GET['rulematch']) > 0) {
-    $inputrulematch = $_GET['rulematch'];
+    $inputrulematch = filter_var($_GET['rulematch'],FILTER_SANITIZE_STRING);
     $filterrulematch = $inputrulematch;
     $where .= "AND signature.description like '%" . quote_smart($inputrulematch) . "%' ";
 } else {
@@ -200,7 +200,7 @@ if (isset($_GET['rulematch']) && strlen($_GET['rulematch']) > 0) {
 
 ### filter limit
 if (isset($_GET['limit']) && is_numeric($_GET['limit']) && $_GET['limit'] < 1000) {
-    $inputlimit = $_GET['limit'];
+    $inputlimit = filter_var($_GET['limit'],FILTER_VALIDATE_INT);
 } else {
     $inputlimit = $glb_detailtablelimit;
 }

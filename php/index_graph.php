@@ -12,7 +12,7 @@ require './top.php';
 
 ## filter criteria 'level'
 if (isset($_GET['level']) && preg_match("/^[0-9]+$/", $_GET['level'])) {
-    $inputlevel = $_GET['level'];
+    $inputlevel = filter_var($_GET['level'],FILTER_VALIDATE_INT);
 } else {
     $inputlevel = $glb_level;
 }
@@ -40,7 +40,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
 ## filter from
 if (isset($_GET['hours']) && preg_match("/^[0-9]+$/", $_GET['hours'])) {
-    $inputhours = $_GET['hours'];
+    $inputhours = filter_var($_GET['hours'],FILTER_VALIDATE_INT);
 } else {
     $inputhours = $glb_hours;
 }

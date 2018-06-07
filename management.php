@@ -20,12 +20,12 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && preg_match("/\/mana
     $where = "";
     # delete ruleid
 	if (isset($_GET['rule_id']) && is_numeric($_GET['rule_id']) && strlen($_GET['rule_id']) > 0)
-	{ 	$where .= "alert.rule_id=" . $_GET['rule_id'] . " AND ";
+	{ 	$where .= "alert.rule_id=" . filter_var($_GET['rule_id'],FILTER_SANITIZE_STRING) . " AND ";
 	}
 
     # deletelevel
     if (isset($_GET['level']) && is_numeric($_GET['level']) && $_GET['level'] > 0) 
-	{ 	$where .= "signature.level=" . $_GET['level'] . " AND ";
+	{ 	$where .= "signature.level=" . filter_var($_GET['level'],FILTER_VALIDATE_INT) . " AND ";
     }
 
     # deletebefore
@@ -42,7 +42,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && preg_match("/\/mana
     }
     # delete data
     if (isset($_GET['datamatch']) && strlen($_GET['datamatch']) > 0) 
-	{ 	$where .= "alert.full_log like \"%" . $_GET['datamatch'] . "%\" AND ";
+	{ 	$where .= "alert.full_log like \"%" . filter_var($_GET['datamatch'],FILTER_SANITIZE_STRING) . "%\" AND ";
     }
 
     $query = "";
