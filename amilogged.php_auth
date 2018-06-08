@@ -48,5 +48,4 @@ switch ( $ZZZ )
 		$MSG = "Mode not 'running' or 'history' ";
 		exit($MSG);
 }
-# $_SESSION['ISADMIN'] = $ISADMIN;
 ?>

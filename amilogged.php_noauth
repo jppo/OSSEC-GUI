@@ -26,6 +26,7 @@ switch ( $ZZZ )
 		$MSG = "Mode not 'running' or 'history' ";
 		exit($MSG);
 }
+# ISADMIN = default
 $ISADMIN = true;
 $ISEDITOR = false;
 
