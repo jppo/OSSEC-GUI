@@ -28,3 +28,5 @@ To use OSSEC-GUI you must install :
   php7 mysql
   php7 xml
 - A Mysql database (tested with Mysql 5.7 and Mariadb 10.1 and 10.3 on some Debian Stretch).
+
+Release : V3.0 created on 09/06/2018
