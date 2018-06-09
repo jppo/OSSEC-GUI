@@ -67,12 +67,14 @@ include "header.php";
 <div class='top10header'>OSSEC-WUI  for OSSEC versions &lt; 2.9.3</div>
 <div class="introbody">The latest Version can be found <a href='https://github.com/NunesGodinho/OSSEC-WUI'>here</a>
 </div>
-<div class='top10header'>OSSEC-GUI V3.0 for OSSEC versions &gt; 2.9.3 or V3.0 beta</div>
+<div class='top10header'>OSSEC-GUI V3.0 for OSSEC versions &gt; 2.9.3 or V3.0</div>
 <div class="introbody">The latest Version can be found <a href='https://github.com/jppo/OSSEC-GUI'>here</a>
 </div>
 
-<div class='top10header'>Wiki</div>
+<div class='top10header'>Wiki ECSC</div>
 <div class="introbody">Click <a href='https://github.com/ECSC/analogi/wiki'>here</a> (wip)</div>
+<div class='top10header'>Wiki OSSEC-GUI</div>
+<div class="introbody">Click <a href='https://github.com/jppo/OSSEC-GUI/wiki'>here</a> (wip)</div>
 
 <div class='top10header'>Links</div>
 <div class="introbody">
