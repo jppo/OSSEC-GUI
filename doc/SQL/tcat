@@ -1,0 +1,9 @@
+select * from alert AA
+where AA.rule_id in
+	(	select SCM.rule_id 
+		from signature_category_mapping SCM,
+			 category CAT
+		where SCM.cat_id = CAT.cat_id
+		  and CAT.cat_name = 'accesslog'
+	)
+;

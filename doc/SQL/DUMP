@@ -1,0 +1,9 @@
+#!/bin/bash
+
+HOST=' --host=192.168.2.2 '
+BASE=ossec_base
+USER=' --user=root ' 
+PASS=' --password=mysql '
+OPTIONS=' --no-create-db --no-create-info --skip-extended-insert '
+
+mysqldump ${OPTIONS} ${HOST} ${USER} ${PASS} ${BASE} signature category signature_category_mapping
