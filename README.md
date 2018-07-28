@@ -6,10 +6,10 @@ The software is tested with both versions 2.9.3 and V3.0 stable.
 First release on 05/06/2018.
 This version contains new functions :
 - Some statistics.
-- Ability to remove alerts.
+- Ability to remove alerts and save them to another database.
 - Ability to "reorganize" the database (Mysql/MariaDB) in a dedicated function.
 - Functions to manage signatures/category mapping.
-- Management of authentication with three levels to manage rights to access many functions.
+- Management of authentication with three levels to manage access rights to "critical" functions.
 - A new improvement : ability to use two databases, one "running" which is feeded by OSSEC where you can "delete" records that are no more interesting (problems solved ...). 
 All deleted records are automagically re-inserted in the second ("history") database for statistical and historical access, thanks to a simple "trigger" on the "alert" table.
 - Some improvements in managing Sql
@@ -28,3 +28,7 @@ To use OSSEC-GUI you must install :
   php7 mysql
   php7 xml
 - A Mysql database (tested with Mysql 5.7 and Mariadb 10.1 and 10.3 on some Debian Stretch).
+
+Release : V3.0 created on 09/06/2018
+
+Please leave me a comment (even in "issues").
