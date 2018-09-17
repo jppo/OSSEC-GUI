@@ -15,6 +15,7 @@ if ( ! defined('AUTH_USER_O') )
 	}
 try 
 { 	$pda = new PDO('mysql:host=' . AUTH_HOST_O . ';dbname=' . AUTH_NAME_O . ';charset=utf8', AUTH_USER_O, AUTH_PASSWORD_O);
+	$pda->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     echo 'Error: ' . $e->getMessage();
     exit("DB_AUTH ERROR");
