@@ -358,11 +358,17 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     <script type="text/javascript">
 	function ZDelId(id) {
 		$.ajaxSetup({async: false});
+		var ptr = document.getElementById('message');
 		url = "delrow.php?id=" + id;
-		$.get(url,function(data,status) {
-				var zzz = 0;
-				} );
-		var zzz = 0;
+		$.get(url,function(data,status) 
+		{ 	if ( status == "success" )
+			{ 	var zzz = 0; 
+			} else
+			{	MSG = 'Error ' + status + ' / ' + data;
+				ptr.innerHTML = MSG;
+				ptr.style.display = 'block';
+			}
+		} );
 		$.ajaxSetup({async: true});
 		document.getElementById("click2go").submit();
 		}
@@ -743,6 +749,8 @@ $(".inflate*").hover(
 );
 }
 </script>
+<div id=message style="border:1px solid red;display: none;">
+</div>
 </body>
 </html>
 

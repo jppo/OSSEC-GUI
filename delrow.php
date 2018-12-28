@@ -5,6 +5,8 @@
  */
 -->
 <?php
+require_once './db_ossec.php';
+include 'config.php';
 include "amilogged.php";
 ?>
 <html>
@@ -24,18 +26,26 @@ include "amilogged.php";
 <body>
 <?php
 
-require_once './db_ossec.php';
-
 if ( isset($_GET['id']) )
 	{	$id = $_GET['id'];
     } else
 	{	$id = 9999;
     }
-$pdo = new PDO('mysql:host=' . DB_HOST_O . ';dbname=' . DB_NAME_O . ';charset=utf8', DB_USER_O, DB_PASSWORD_O);
-$query = "DELETE FROM alert WHERE id = ".$id.";";
-$stmt  = $pdo->prepare($query);
-$stmt->execute();
-
+/* $pdo = new PDO('mysql:host=' . DB_HOST_O . ';dbname=' . DB_NAME_O . ';charset=utf8', DB_USER_O, DB_PASSWORD_O);
+ * */
+$query = "DELETE FROM alert WHERE id = " . $id . ";";
+try { 	$stmt  = $pdo->prepare($query);
+    } catch (Exception $e)
+    {	$MSG = 'delrow Sqlerror 1 : ' . $e;
+	error_log($MSG,0);
+	exit(400);
+    }
+try { 	$stmt->execute();
+    } catch (Exception $e)
+    {	$MSG = 'delrow Sqlerror 2 : ' . $e;
+	error_log($MSG,0);
+	exit(400);
+    }
 ?>
 </body>
 </html>
