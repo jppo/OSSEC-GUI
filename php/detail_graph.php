@@ -48,8 +48,8 @@ if (isset($_GET['breakdown']) && $_GET['breakdown'] == 'level') {
 		AND alert.rule_id=signature.rule_id
 		" . $where . "
 		" . $wherecategory_and . "
-		GROUP BY substring(alert.timestamp, 1, $substrsize), signature.level
-		ORDER BY substring(alert.timestamp, 1, $substrsize), signature.level";
+		GROUP BY concat(substring(alert.timestamp, 1, $substrsize), '$zeros'), signature.level
+		ORDER BY concat(substring(alert.timestamp, 1, $substrsize), '$zeros'), signature.level";
 
 } elseif ((isset($_GET['breakdown']) && $_GET['breakdown'] == 'rule_id') || (isset($_GET['source']) && strlen($_GET['source']) > 0)) {
     # breakdown is set to source OR a source has been chosen
@@ -62,8 +62,8 @@ if (isset($_GET['breakdown']) && $_GET['breakdown'] == 'level') {
 		AND alert.rule_id=signature.rule_id
 		" . $where . "
 		" . $wherecategory_and . "
-		GROUP BY substring(alert.timestamp, 1, $substrsize), alert.rule_id
-		ORDER BY substring(alert.timestamp, 1, $substrsize), alert.rule_id";
+		GROUP BY concat(substring(alert.timestamp, 1, $substrsize), '$zeros'), alert.rule_id
+		ORDER BY concat(substring(alert.timestamp, 1, $substrsize), '$zeros'), alert.rule_id";
 } else {
     # Default - i.e. if not chosen, or if set to 'source'
     $querychart = "SELECT concat(substring(alert.timestamp, 1, $substrsize), '$zeros') as res_time, count(alert.id) as res_cnt, SUBSTRING_INDEX(location.name, ' ', 1) as res_value
@@ -73,8 +73,8 @@ if (isset($_GET['breakdown']) && $_GET['breakdown'] == 'level') {
 		AND alert.rule_id=signature.rule_id
 		" . $where . "
 		" . $wherecategory_and . "
-		GROUP BY substring(alert.timestamp, 1, $substrsize), SUBSTRING_INDEX(location.name, ' ', 1)
-		ORDER BY substring(alert.timestamp, 1, $substrsize), SUBSTRING_INDEX(location.name, ' ', 1)";
+		GROUP BY concat(substring(alert.timestamp, 1, $substrsize), '$zeros'), SUBSTRING_INDEX(location.name, ' ', 1)
+		ORDER BY concat(substring(alert.timestamp, 1, $substrsize), '$zeros'), SUBSTRING_INDEX(location.name, ' ', 1)";
 
 }
 

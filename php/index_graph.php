@@ -10,6 +10,7 @@ require "./config.php";
 // FILTER BEGIN
 require './top.php';
 
+error_log("Debut",0);
 ## filter criteria 'level'
 if (isset($_GET['level']) && preg_match("/^[0-9]+$/", $_GET['level'])) {
     $inputlevel = filter_var($_GET['level'],FILTER_VALIDATE_INT);
@@ -135,6 +136,9 @@ if ((isset($_GET['field']) && $_GET['field'] == 'path') || (!isset($_GET['field'
 
     $graphheightmultiplier = 5;
     $keyprepend = "";
+	$ZON1 = "(concat(substring(alert.timestamp, 1, $substrsize), '$zeros')+" . $halfperiod . ")";
+	error_log($ZON1,0);
+	exit(100);
     $querychart = "select (concat(substring(alert.timestamp, 1, $substrsize), '$zeros')+" . $halfperiod . ") as res_time, count(alert.id) as res_cnt, SUBSTRING_INDEX(location.name, '->', -1) as res_field
 		from alert, location, signature " . $wherecategory_tables . "
 		where signature.level>=$inputlevel
@@ -144,8 +148,10 @@ if ((isset($_GET['field']) && $_GET['field'] == 'path') || (!isset($_GET['field'
 		and alert.timestamp>" . (time() - ($inputhours * 3600)) . "
 		" . $wherecategory . " 
 		" . $glb_notrepresentedwhitelist_sql . "
-		group by substring(alert.timestamp, 1, $substrsize), SUBSTRING_INDEX(location.name, '->', -1)
-		order by substring(alert.timestamp, 1, $substrsize), SUBSTRING_INDEX(location.name, '->', -1)";
+		group by (concat(substring(alert.timestamp, 1, $substrsize), '$zeros')+" . $halfperiod . "),
+		 SUBSTRING_INDEX(location.name, '->', -1)
+		order by (concat(substring(alert.timestamp, 1, $substrsize), '$zeros')+" . $halfperiod . "),
+		 SUBSTRING_INDEX(location.name, '->', -1)";
 } elseif ((isset($_GET['field']) && $_GET['field'] == 'level') || (!isset($_GET['field']) && $glb_graphbreakdown == "level")) {
     $graphheightmultiplier = 2;
     $keyprepend = "Lvl: ";
@@ -158,8 +164,8 @@ if ((isset($_GET['field']) && $_GET['field'] == 'path') || (!isset($_GET['field'
 		and alert.timestamp>" . (time() - ($inputhours * 3600)) . "
 		" . $wherecategory . " 
 		" . $glb_notrepresentedwhitelist_sql . "
-		group by substring(alert.timestamp, 1, $substrsize), signature.level
-		order by substring(alert.timestamp, 1, $substrsize), signature.level";
+		group by (concat(substring(alert.timestamp, 1, $substrsize), '$zeros')+" . $halfperiod . "), signature.level
+		order by (concat(substring(alert.timestamp, 1, $substrsize), '$zeros')+" . $halfperiod . "), signature.level";
 } elseif ((isset($_GET['field']) && $_GET['field'] == 'rule_id') || (!isset($_GET['field']) && $glb_graphbreakdown == "rule_id")) {
     $graphheightmultiplier = 8;
     $keyprepend = "";
@@ -172,8 +178,10 @@ if ((isset($_GET['field']) && $_GET['field'] == 'path') || (!isset($_GET['field'
 		and alert.timestamp>" . (time() - ($inputhours * 3600)) . "
 		" . $wherecategory . " 
 		" . $glb_notrepresentedwhitelist_sql . "
-		group by substring(alert.timestamp, 1, $substrsize), alert.rule_id
-		order by substring(alert.timestamp, 1, $substrsize), alert.rule_id";
+		group by (concat(substring(alert.timestamp, 1, $substrsize), '$zeros')+" . $halfperiod . "),
+		 CONCAT(alert.rule_id, ' ', signature.description)
+		order by (concat(substring(alert.timestamp, 1, $substrsize), '$zeros')+" . $halfperiod . "),
+		 CONCAT(alert.rule_id, ' ', signature.description)";
 } else {
     # Default is source
 
@@ -188,11 +196,16 @@ if ((isset($_GET['field']) && $_GET['field'] == 'path') || (!isset($_GET['field'
 		and alert.timestamp>" . (time() - ($inputhours * 3600)) . "
 		" . $wherecategory . " 
 		" . $glb_notrepresentedwhitelist_sql . "
-		group by substring(alert.timestamp, 1, $substrsize), SUBSTRING_INDEX(location.name, ' ', 1)
-		order by substring(alert.timestamp, 1, $substrsize), SUBSTRING_INDEX(location.name, ' ', 1)";
+		group by (concat(substring(alert.timestamp, 1, $substrsize), '$zeros')+" . $halfperiod . "),
+		 SUBSTRING_INDEX(SUBSTRING_INDEX(location.name, ' ', 1), '->', 1)
+		order by (concat(substring(alert.timestamp, 1, $substrsize), '$zeros')+" . $halfperiod . "),
+		 SUBSTRING_INDEX(SUBSTRING_INDEX(location.name, ' ', 1), '->', 1)";
 }
 $query = preg_replace('/\t/', ' ', $query);
 $query = preg_replace('/\n/', ' ', $query);
+if ( $glb_debug == 1 )
+{	print('<br>' + $query);
+}
 try
 { 	$stmt = $pdo->prepare($querychart);
 	$stmt->execute();
