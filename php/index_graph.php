@@ -10,7 +10,6 @@ require "./config.php";
 // FILTER BEGIN
 require './top.php';
 
-error_log("Debut",0);
 ## filter criteria 'level'
 if (isset($_GET['level']) && preg_match("/^[0-9]+$/", $_GET['level'])) {
     $inputlevel = filter_var($_GET['level'],FILTER_VALIDATE_INT);
