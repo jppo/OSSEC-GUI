@@ -31,4 +31,6 @@ To use OSSEC-GUI you must install :
 
 Release : V3.0 created on 09/06/2018
 
+June 2019 : corrected some sqlerrors detected by Mysql 5.7, syntax was OK with previous Mysql version.
+
 Please leave me a comment (even in "issues").
