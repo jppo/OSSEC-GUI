@@ -29,48 +29,51 @@ $querydata = "select id,description,sum(acounter) as counter1, sum(bcounter) as 
 sum(ccounter) as counter3, sum(dcounter) as counter4,
 sum(acounter) + sum(bcounter) + sum(ccounter) + sum(dcounter) as total
 from (
-select \"1\" as week, SUBSTRING_INDEX(SUBSTRING_INDEX(LO.name, \" \", 1), \"->\", 1) as server,
+select '1' as week, SUBSTRING_INDEX(SUBSTRING_INDEX(LO.name, ' ', 1), '->', 1) as server,
 		SG.id, SG.description,
 		count(*) as acounter, 0 as bcounter,0 as ccounter, 0 as dcounter
 from alert AA, location LO, signature SG
 where AA.location_id = LO.id
   and AA.rule_id     = SG.rule_id
   and AA.timestamp  <= " . $dmax1 . "
-  and AA.timestamp  > " . $dmax2 . " " . $wheresource . " " . $wherepath . " " . $wherecategory . $whererule_id . $wherelevelmin . "
-group by 1,2,3,4
-union
-select \"2\" as week, SUBSTRING_INDEX(SUBSTRING_INDEX(LO.name, \" \", 1), \"->\", 1) as server,
+  and AA.timestamp  > " . $dmax2 . " " . $wheresource . " " . $wherepath . " " . $wherecategory . $whererule_id . $wherelevelmin ;
+#
+$querydata .= " group by week,SUBSTRING_INDEX(SUBSTRING_INDEX(LO.name, ' ', 1), '->', 1), SG.id, SG.description ";
+$querydata .= " union
+select '2' as week, SUBSTRING_INDEX(SUBSTRING_INDEX(LO.name, ' ', 1), '->', 1) as server,
 		SG.id, SG.description,
 		0 as acounter, count(*) as bcounter,0 as ccounter, 0 as dcounter
 from alert AA, location LO, signature SG
 where AA.location_id = LO.id
   and AA.rule_id     = SG.rule_id
-  and AA.timestamp <= " . $dmax2 . "
-  and AA.timestamp >= " . $dmin . " " . $wheresource . " " . $wherepath . " " . $wherecategory . $whererule_id . $wherelevelmin . "
-group by 1,2,3,4 ";
+   and AA.timestamp <= " . $dmax2  ;  
+$querydata .= " and AA.timestamp >= " . $dmin . " " . $wheresource . " " . $wherepath . " " . $wherecategory . $whererule_id . $wherelevelmin ;
+$querydata .= " group by week,SUBSTRING_INDEX(SUBSTRING_INDEX(LO.name,' ', 1), '->', 1), SG.id, SG.description ";
+#
 
 if ( $wheresource2 != "" )
 {	$querydata .= 
 "union 
- select \"3\" as week, SUBSTRING_INDEX(SUBSTRING_INDEX(LO.name, \" \", 1), \"->\", 1) as server,
+ select '3' as week, SUBSTRING_INDEX(SUBSTRING_INDEX(LO.name, ' ', 1), '->', 1) as server,
 		SG.id, SG.description,
 		0 as acounter, 0 as bcounter, count(*) as ccounter, 0 as dcounter
 from alert AA, location LO, signature SG
 where AA.location_id = LO.id
   and AA.rule_id     = SG.rule_id
-  and AA.timestamp  <= " . $dmax1 . "
-  and AA.timestamp   > " . $dmax2 . " " . $wheresource2 . " " . $wherepath . " " . $wherecategory . $whererule_id . $wherelevelmin . "
+   and AA.timestamp  <= " . $dmax1 . "
+   and AA.timestamp   > " . $dmax2 . " " . $wheresource2 . " " . $wherepath . " " . $wherecategory . $whererule_id . $wherelevelmin . "
 group by 1,2,3,4
 union
-select \"4\" as week, SUBSTRING_INDEX(SUBSTRING_INDEX(LO.name, \" \", 1), \"->\", 1) as server,
+select '4' as week, SUBSTRING_INDEX(SUBSTRING_INDEX(LO.name, ' ', 1), '->', 1) as server,
 		SG.id, SG.description,
 		0 as acounter,0 as bcounter,0 as ccounter,count(*) as dcounter
 from alert AA, location LO, signature SG
 where AA.location_id = LO.id
   and AA.rule_id     = SG.rule_id
-  and AA.timestamp  <= " . $dmax2 . "
-  and AA.timestamp  >= " . $dmin . " " . $wheresource2 . " " . $wherepath . " " . $wherecategory . $whererule_id . $wherelevelmin . "
-group by 1,2,3,4 ";
+  and AA.timestamp  <= " . $dmax2 ; 
+#
+$querydata .= " and AA.timestamp  >= " . $dmin . " " . $wheresource2 . " " . $wherepath . " " . $wherecategory . $whererule_id . " " . $wherelevelmin ;
+$querydata .= " group by 1,2,3,4 ";
 	$model = 1;
 	$limitmax = 60;
 } else
@@ -78,9 +81,7 @@ group by 1,2,3,4 ";
 	$limitmax = 90;
 }
 
-$querydata .= ") xx
-group by id
-order by total DESC,id limit " . $limitmax . "; ";
+$querydata .= ") xx group by id,description order by total DESC,id limit " . $limitmax . "; ";
 $anydata = 0;
 # $glb_debug = 1;
 if ( $glb_debug == 1 )
