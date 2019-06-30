@@ -17,8 +17,8 @@ $query = "SELECT 	count(alert.rule_id) as count,
 	AND signature.level>" . $glb_threatlevel . "
 	AND alert.rule_id = signature.rule_id
 	AND alert.location_id = location.id
-	GROUP BY source, rule_id
-	ORDER BY level DESC, timestamp
+	GROUP BY 3,4,5,6,7
+	ORDER BY 5 DESC, 2
 	LIMIT " . $glb_threatlimit . ";";
 
 if ($glb_debug == 1) {

@@ -40,8 +40,8 @@ AND alert.location_id=location.id
 AND signature.level>=" . $glb_trendlevel . "
 AND alert.rule_id=signature.rule_id
 AND " . $where . "
-GROUP BY res_loc, res_field, res_time
-ORDER BY res_loc, res_field, res_time, res_cnt;";
+GROUP BY 3,4,1
+ORDER BY 3,4,2 ;";
 
 $query = preg_replace('/\t/', ' ', $query);
 $query = preg_replace('/\n/', ' ', $query);
