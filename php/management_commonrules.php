@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2017 António 'Tó' Godinho <to@isec.pt>.
- * Copyright (c) 2018 JP P
+ * Copyright (c) 2019 JP P
  * This program is free software; Distributed under the terms of the GNU GPL v3.
  */
 $query = "SELECT count(alert.id) as res_cnt, alert.rule_id as res_rule, location.name as res_loc, substring_index(substring_index(location.name, ' ', 1), '->', 1) as sname, substring_index(location.name,'->',-1) as pname

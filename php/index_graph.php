@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2017 António 'Tó' Godinho <to@isec.pt>.
- * Copyright (c) 2018 JP P
+ * Copyright (c) 2019 JP P
  * This program is free software; Distributed under the terms of the GNU GPL v3.
  */
 
@@ -10,6 +10,7 @@ require "./config.php";
 // FILTER BEGIN
 require './top.php';
 
+error_log("Debut",0);
 ## filter criteria 'level'
 if (isset($_GET['level']) && preg_match("/^[0-9]+$/", $_GET['level'])) {
     $inputlevel = filter_var($_GET['level'],FILTER_VALIDATE_INT);
@@ -498,8 +499,8 @@ for ($i = $daysago; $i >= 0; $i--) {
 		// GUIDE - Weekend
 		{
 		    id : 'guide . $i .',
-		    date : new Date(2018, " . $guidemonth . ", " . $guidedate . ", 0, 0),
-		    toDate : new Date(2018, " . $guidemonth . ", " . $guidedate . ", 23, 59),
+		    date : new Date(2019, " . $guidemonth . ", " . $guidedate . ", 0, 0),
+		    toDate : new Date(2019, " . $guidemonth . ", " . $guidedate . ", 23, 59),
 		    fillColor : '" . $glb_outofhourscolour . "',
 		    inside : false,
 		    fillAlpha : 0.2,
@@ -515,8 +516,8 @@ for ($i = $daysago; $i >= 0; $i--) {
 		// day value = " . date('N', strtotime('-' . $i . ' days')) . " am
 		{
 		    id : 'guide" . $i . "am',
-		    date : new Date(2018, " . $guidemonth . ", " . $guidedate . ", 0, 1),
-		    toDate : new Date(2018, " . $guidemonth . ", " . $guidedate . ", " . $glb_outofhours_daystart . ", 0),
+		    date : new Date(2019, " . $guidemonth . ", " . $guidedate . ", 0, 1),
+		    toDate : new Date(2019, " . $guidemonth . ", " . $guidedate . ", " . $glb_outofhours_daystart . ", 0),
 		    fillColor : '" . $glb_outofhourscolour . "',
 		    inside : false,
 		    fillAlpha : 0.2,
@@ -524,8 +525,8 @@ for ($i = $daysago; $i >= 0; $i--) {
 		},
 		{
 		    id : 'guide" . $i . "pm',
-		    date : new Date(2018, " . $guidemonth . ", " . $guidedate . ", " . $glb_outofhours_dayend . ", 0),
-		    toDate : new Date(2018, " . $guidemonth . ", " . $guidedate . ", 23, 59),
+		    date : new Date(2019, " . $guidemonth . ", " . $guidedate . ", " . $glb_outofhours_dayend . ", 0),
+		    toDate : new Date(2019, " . $guidemonth . ", " . $guidedate . ", 23, 59),
 		    fillColor : '" . $glb_outofhourscolour . "',
 		    inside : false,
 		    fillAlpha : 0.2,

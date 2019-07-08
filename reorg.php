@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2018 JP P
+ * Copyright 2019 JP P
  * This program is free software; Distributed under the terms of the GNU GPL v3.
  * Added to replace "optimise" in Database cleanup every time
  * you run it.

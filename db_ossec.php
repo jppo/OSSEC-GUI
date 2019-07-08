@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2017 António 'Tó' Godinho <to@isec.pt>.
- * Copyright (c) 2018 JP P
+ * Copyright (c) 2019 JP P
  * This program is free software; Distributed under the terms of the GNU GPL v3.
  */
 
@@ -16,7 +16,6 @@ if ( ! defined('DB_USER_O') )
 $VERSION = "V3.0";
 try {
     $pdo = new PDO('mysql:host=' . DB_HOST_O . ';dbname=' . DB_NAME_O . ';charset=utf8', DB_USER_O, DB_PASSWORD_O);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     echo 'Error: ' . $e->getMessage();
     exit();

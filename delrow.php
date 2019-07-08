@@ -1,6 +1,6 @@
 <!-- 
 /*
- * Copyright (c) 2018 JP P
+ * Copyright (c) 2019 JP P
  * This program is free software; Distributed under the terms of the GNU GPL v3.
  */
 -->

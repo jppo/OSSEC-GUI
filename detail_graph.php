@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2017 António 'Tó' Godinho <to@isec.pt>.
- * Copyright (c) 2018 JP P
+ * Copyright (c) 2019 JP P
  * This program is free software; Distributed under the terms of the GNU GPL v3.
  */
 ## Note - I know that a substring of a timestamp isn't that clean, but this is built for high peformance on a huge table

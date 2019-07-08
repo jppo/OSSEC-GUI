@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2017 António 'Tó' Godinho <to@isec.pt>.
- * Copyright (c) 2018 JP P
+ * Copyright (c) 2019 JP P
  * This program is free software; Distributed under the terms of the GNU GPL v3.
  */
 ### Google map API key Change it, it is mine !
@@ -140,12 +140,12 @@ $glb_commonpatternscount = 10;
 # Threat Days
 # The amount of days back in time the threat list will look
 # implemented = yes
-$glb_threatdays = 15;
+$glb_threatdays = 30;
 
 # Threat limit
 # How many alerts shown in the table
 # implemented = yes
-$glb_threatlimit = 20;
+$glb_threatlimit = 30;
 
 # Threat Level
 # Lowest level to monitor. Probably wont affect usage much.
@@ -181,7 +181,7 @@ $glb_trendlevel = 2;
 # IPs Trending
 # Top 'x' IPs 
 # implemented = yes
-$glb_trendip_top = 15;
+$glb_trendip_top = 30;
 
 # IPs Trending Blacklist
 # IPs to ignore from looking at who has been 'busy' in the logs
@@ -189,9 +189,9 @@ $glb_trendip_top = 15;
 # implemented = yes
 $glb_trendip_ignore = array(
     "192.168.1.",
+    "192.168.2.",
     "172.16.",
     "10.",
-    "172.10.",
     "173.10."
 );
 
