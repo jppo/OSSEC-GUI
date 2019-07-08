@@ -5,7 +5,7 @@
  * This program is free software; Distributed under the terms of the GNU GPL v3.
  */
 ### Google map API key Change it, it is mine !
-$google_api_key = 'AIzaSyCoEQmv6CTN3zE2Tjji5GS70SBYGlfA2_c';
+$google_api_key = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
 ### Overall
 
 # Not represented whitelist
