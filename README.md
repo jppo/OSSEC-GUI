@@ -1,8 +1,8 @@
 # OSSEC-GUI
-Version of OSSEC-WUI adapted to OSSEC versions >= 2.9.3, V3.0 included.
-This an evolution from Analogi (from Ecsc) and OSSEC-WUI which can be found at :
+Version of OSSEC-WUI adapted to OSSEC versions >= 2.9.3, V3.+ included.
+This an evolution from Analogi (from Ecsc) and OSSEC-WUI from António Godinho which can be found at :
 https://github.com/NunesGodinho/OSSEC-WUI which uses the "old" database schema.
-The software is tested with both versions 2.9.3 and V3.0 stable.
+The software is tested with both versions 2.9.3 and V3.0 stable upto V3.2.
 First release on 05/06/2018.
 This version contains new functions :
 - Some statistics.
@@ -27,11 +27,12 @@ To use OSSEC-GUI you must install :
   php7 mbstring
   php7 mysql
   php7 xml
+  Works also with PHP 7.3
 - A Mysql database (tested with Mysql 5.7 and Mariadb 10.1 and 10.3 on some Debian Stretch).
 
 Release : V3.0 created on 09/06/2018
 
-June 2019 : corrected some sqlerrors detected by Mysql 5.7 (linked with "sql_mode"), syntax was OK 
+June/july 2019 : corrected some sqlerrors detected by Mysql 5.7 (linked with "sql_mode"), syntax was OK 
 with previous Mysql version.
 
 Please leave me a comment (even in "issues").
