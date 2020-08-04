@@ -35,4 +35,10 @@ Release : V3.0 created on 09/06/2018
 June/july 2019 : corrected some sqlerrors detected by Mysql 5.7 (linked with "sql_mode"), syntax was OK 
 with previous Mysql version.
 
+The file "ossec.signature.sql.gz" contient un vidage de ma table "signature" en format "insert" et compressé, ce fichier ne contient que des ordres INSERT simples tels que :
+INSERT INTO ossec_base.signature (id,rule_id,`level`,description) VALUES (11,11,4,'Excessive number of logs');
+INSERT INTO ossec_base.signature (id,rule_id,`level`,description) VALUES (501,501,3,'new ossec agent connected.');
+
+
+
 Please leave me a comment (even in "issues").
